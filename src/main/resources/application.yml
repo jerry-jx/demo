@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.252:3306/account?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: account_app
+    password: Jxinternet@1234
+    tomcat:
+      initialSize: 1
+      min-idle: 1
+      max-idle: 20
+      max-wait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+logging:
+  file: logs/demo.log

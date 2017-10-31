@@ -1,0 +1,7 @@
+server:
+  port: 443
+  ssl:
+    key-store: classpath:xxx.jks
+    key-store-password: xxx
+    keyStoreType: JKS
+    keyAlias: xxx
