@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/cache
+http://www.springframework.org/schema/cache/spring-cache.xsd">
+  <!-- 启用缓存注解功能，这个是必须的，否则注解不会生效，另外，该注解一定要声明在spring主配置文件中才会生效 -->
+  <cache:annotation-driven cache-manager="cacheManager" />
+
+  <bean id="userService" class="com.example.demo.controller.springcache.UserService" />
+
+  <!-- generic cache manager -->
+  <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+    <property name="caches">
+      <set>
+        <bean class="com.example.demo.controller.springcache.MyCache"
+          p:name="userCache" />
+      </set>
+    </property>
+  </bean>
+</beans>
