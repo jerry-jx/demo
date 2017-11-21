@@ -44,6 +44,7 @@ public class GetDownloadUrlFromS3ByUrl {
         int expirationPeriod = 7;
         String requestUrl = "https://twistedsifter.files.wordpress.com/2016/07/dulmen_bornste_waldweg.jpg";
             /**
+             * https://notepad-plus-plus.org/repository/7.x/7.5.1/npp.7.5.1.Installer.exe
              * https://download.moodle.org/download.php/stable33/moodle-latest-33.tgz
              * http://www.freefileviewer.com/downloads/newest.exe
              * http://i1-news.softpedia-static.com/images/news2/Picture-of-the-Day-Real-Life-Simba-and-Mufasa-Caught-on-Camera-in-Tanzania-392687-2.jpg
