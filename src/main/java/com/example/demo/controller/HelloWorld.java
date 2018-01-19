@@ -29,9 +29,9 @@ public class HelloWorld {
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "查询用户数成功", response = String.class)})
     @RequestMapping(value = "/reg", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-    public Object reg(@RequestParam("userId") String userId ){
+    public void reg(@RequestParam("userId") String userId ){
        int count = regService.regUser(userId);
-        return String.valueOf(count);
+        //return String.valueOf(count);
     }
 
    /* @ApiOperation(value = "用户登录接口",  tags = {"user"})
