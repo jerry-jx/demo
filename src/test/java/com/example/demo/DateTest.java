@@ -10,11 +10,9 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 public class DateTest {
 
@@ -39,7 +37,7 @@ public class DateTest {
 
         System.out.println("Difference in seconds : " + Duration.between(inst1, inst2).getSeconds());
 
-        //3
+        //3+
         LocalDate startDate = LocalDate.of(1993, Month.OCTOBER, 19);
         System.out.println("开始时间  : " + startDate);
 
@@ -51,23 +49,23 @@ public class DateTest {
 
     }
 
-    private int getTimeIntervalByLastTime(String lastDate ){
+    private int getTimeIntervalByLastTime(String lastDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         // LocalDate formatted = LocalDate.parse(date, DateTimeFormatter.ISO_ORDINAL_DATE);
-        LocalDate lastTime = LocalDate.parse(lastDate,formatter);
+        LocalDate lastTime = LocalDate.parse(lastDate, formatter);
         LocalDate today = LocalDate.now();
-        Period periodTime = Period.between(lastTime,today);
-        return  periodTime.getDays();
+        Period periodTime = Period.between(lastTime, today);
+        return periodTime.getDays();
     }
 
-    private int getTimeIntervalByLastTime(Date lastDate ){
+    private int getTimeIntervalByLastTime(Date lastDate) {
         Instant instant = lastDate.toInstant();
-        ZoneId zone =ZoneId.systemDefault();
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant,zone);
+        ZoneId zone = ZoneId.systemDefault();
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, zone);
         LocalDate lastLocalDate = localDateTime.toLocalDate();
         LocalDate today = LocalDate.now();
-        Period periodTime = Period.between(lastLocalDate,today);
-        return  periodTime.getDays();
+        Period periodTime = Period.between(lastLocalDate, today);
+        return periodTime.getDays();
     }
 
 }
