@@ -3,15 +3,20 @@ package com.example.demo.controller.HTMLCatch
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+
+import org.apache.http.HttpEntity
 import org.apache.http.ParseException
 import org.apache.http.client.ClientProtocolException
+import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.client.methods.HttpGet
+import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClients
 import org.apache.http.util.EntityUtils
-import org.jsoup.Connection
-import org.jsoup.Connection.Method
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
+import org.jsoup.select.Elements
 
 /**
  * <STRONG>类描述</STRONG> :  2345万年历信息爬取工具
@@ -34,29 +39,42 @@ import org.jsoup.nodes.Document
  * ---------------         -------------------         -----------------------------------
 </pre> *
  */
-object AlmanacLoginUtilTestKt {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val almanac = getAlmanac()
-        println(almanac)
-       /* println("公历时间：" + almanac.solar)
-        println("农历时间：" + almanac.lunar)
-        println("天干地支：" + almanac.chineseAra)
-        println("宜：" + almanac.should)
-        println("忌：" + almanac.avoid)*/
-    }
-
-
+object AlmanacUtilKt {
     /**
      * 获取万年历信息
      * @return
      */
-    @Throws(IOException::class)
-    fun getAlmanac(): Almanac {
-        /* String url="http://tools.2345.com/rili.htm";
-        String html=pickData(url);
-        Almanac almanac=analyzeHTMLByString(html);*/
-        return analyzeHTMLByString()
+   /* val almanac: Almanac
+        get() {
+            val url = "http://tools.2345.com/rili.htm"
+            val html = pickData(url)
+            val almanac = analyzeHTMLByString(html)
+            return almanac
+        }*/
+
+    fun almanac():Almanac{
+        val url = "http://tools.2345.com/rili.htm"
+        val html = pickData(url)
+        val almanac = analyzeHTMLByString(html)
+        return almanac
+    }
+
+    /*
+     * 获取公历时间,用yyyy年MM月dd日 EEEE格式表示。
+     * @return yyyy年MM月dd日 EEEE
+     */
+   /* private val solarDate: String
+        get() {
+            val calendar = Calendar.getInstance()
+            val solarDate = calendar.time
+            val formatter = SimpleDateFormat("yyyy年MM月dd日 EEEE")
+            return formatter.format(solarDate)
+        }*/
+    fun getSolarDate(): String{
+        val calendar = Calendar.getInstance()
+        val solarDate = calendar.time
+        val formatter = SimpleDateFormat("yyyy年MM月dd日 EEEE")
+        return formatter.format(solarDate)
     }
 
     /*
@@ -98,33 +116,14 @@ object AlmanacLoginUtilTestKt {
     /*
      * 使用jsoup解析网页信息
      */
-    @Throws(IOException::class)
-    private fun analyzeHTMLByString(): Almanac {
-        val solarDate: String
+    private fun analyzeHTMLByString(html: String?): Almanac {
+        var solarDate: String = getSolarDate()
         val lunarDate: String
         val chineseAra: String
         val should: String
         var avoid = " "
-
-        var res: Connection.Response? = Jsoup.connect("http://106.mgt.com/")
-                .data("username", "jerry", "password", "123456","otpCode","123456")
-                .method(Method.GET)
-                .execute()
-
-        val doc = res!!.parse()
-        println("username" + doc.getElementById("username"))
-        println("passwd" + doc.getElementById("passwd"))
-
-        //这儿的SESSIONID需要根据要登录的目标网站设置的session Cookie名字而定
-        val sessionId = res.cookie("SESSIONID")
-
-        val document = Jsoup.connect("http://w071.hga020.com/")
-                .cookie("SESSIONID", sessionId)
-                .get()
-
-        //Document document = Jsoup.parse(html);
+        val document = Jsoup.parse(html)
         //公历时间
-        solarDate = getSolarDate()
         //农历时间
         val eLunarDate = document.getElementById("info_nong")
         lunarDate = eLunarDate.child(0).html().substring(1, 3) + eLunarDate.html().substring(11)
@@ -135,7 +134,8 @@ object AlmanacLoginUtilTestKt {
         should = getSuggestion(document, "yi")
         //忌
         avoid = getSuggestion(document, "ji")
-        return Almanac(solarDate, lunarDate, chineseAra, should, avoid)
+        val almanac = Almanac(solarDate, lunarDate, chineseAra, should, avoid)
+        return almanac
     }
 
     /*
@@ -151,16 +151,7 @@ object AlmanacLoginUtilTestKt {
         return sb.toString()
     }
 
-    /*
-     * 获取公历时间,用yyyy年MM月dd日 EEEE格式表示。
-     * @return yyyy年MM月dd日 EEEE
-     */
-    private fun getSolarDate(): String {
-        val calendar = Calendar.getInstance()
-        val solarDate = calendar.time
-        val formatter = SimpleDateFormat("yyyy年MM月dd日 EEEE")
-        return formatter.format(solarDate)
-    }
-
 }
-
+/**
+ * 单例工具类
+ */

@@ -3882,3 +3882,5 @@ javax.servlet.ServletException: Circular view path [reg]: would dispatch back to
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.16.jar:8.5.16]
 	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_111]
 
+2018-04-05 14:13:15.531 [32m INFO[0;39m [33m[-,,,][0;39m 1663516 --- [main] com.example.demo.DemoApplication         : The following profiles are active: dev
+2018-04-05 14:13:15.593 [32m INFO[0;39m [33m[-,,,][0;39m 1663516 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@41aaedaa: startup date [Thu Apr 05 14:13:15 SGT 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@66c61024

@@ -29,7 +29,7 @@ public class OpenURLBrowser {
      */
     public static void openFireFoxBrowser(){
         //启用cmd运行IE的方式来打开网址。
-        String str = "cmd /c start Firefox https://www.multcloud.com/index.jsp?rl=zh-CN#add_drive";
+        String str = "cmd /c start Firefox https://www.multcloud.com/index.jsp?rl=zh-CN#cloudType=baiDu&tokenId=Z7lRz6WjbhZ0waVhoPlJvP6NNX8KbRcT002f2zmKNBRgj002bJ7oc2ez2q13upmlT8qOL002b&fileId=/apps";
         try {
             Runtime.getRuntime().exec(str);
         } catch (IOException e) {
@@ -43,7 +43,7 @@ public class OpenURLBrowser {
             openFireFoxBrowser();
             try {
                 log.info("刷新{}次",i);
-                Thread.sleep(10 * 60 * 1000);
+                Thread.sleep(5 * 60 * 1000);
                 i++;
             } catch (InterruptedException e) {
                 e.printStackTrace();

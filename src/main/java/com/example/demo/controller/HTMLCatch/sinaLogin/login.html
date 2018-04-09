@@ -1,0 +1,27 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+  <title>新浪通行证</title>
+
+
+  <script charset="utf-8" src="http://i.sso.sina.com.cn/js/ssologin.js"></script>
+</head>
+<body>
+正在登录 ...
+<script>
+  try{sinaSSOController.setCrossDomainUrlList({"retcode":0,"arrURL":["http:\/\/passport.97973.com\/sso\/crossdomain?action=login&savestate=1518828005","http:\/\/passport.weibo.cn\/sso\/crossdomain?action=login&savestate=1"]});}
+  catch(e){
+    var msg = e.message;
+    var img = new Image();
+    var type = 1;
+    img.src = 'http://login.sina.com.cn/sso/debuglog?msg=' + msg +'&type=' + type;
+  }try{sinaSSOController.crossDomainAction('login',function(){location.replace('http://passport.weibo.com/wbsso/login?ssosavestate=1518828005&url=http%3A%2F%2Fweibo.com%2Fajaxlogin.php%3Fframelogin%3D1%26callback%3Dparent.sinaSSOController.feedBackUrlCallBack&ticket=ST-NTUwODg3MjkxMQ==-1487292005-gz-FF56C545999F864FC6C7AB86FCA9FA4A-1&retcode=0');});}
+  catch(e){
+    var msg = e.message;
+    var img = new Image();
+    var type = 2;
+    img.src = 'http://login.sina.com.cn/sso/debuglog?msg=' + msg +'&type=' + type;
+  }
+</script>
+</body>
+</html>

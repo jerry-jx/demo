@@ -4,7 +4,7 @@ package com.example.demo
  *
  * Created by jerry-jx on 2017/12/13.
  */
-class Kotlin {
+
     fun main(args: Array<String>) {
 
         judge()
@@ -54,4 +54,3 @@ class Kotlin {
     }
 
 
-}
