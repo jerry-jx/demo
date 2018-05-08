@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+
 import com.amazonaws.annotation.SdkTestInternalApi;
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,12 +26,14 @@ public class Java8
     public static void main(String [] args){
         //sortTest();
 
-        List<String> delTableList = Arrays.asList(COMMISSION_DEL_TABLE.split(","));
+        /*List<String> delTableList = Arrays.asList(COMMISSION_DEL_TABLE.split(","));
 
         delTableList.forEach(table -> {
             System.out.println(delTableList.contains("balance.effective_bet_event_16"));
             }
-        );
+        );*/
+
+        System.out.println(trimPunct("把我的标点符号去掉吧，全科。"));
     }
 
 
@@ -38,7 +42,19 @@ public class Java8
         Collections.sort(names,( a,  b) ->
             a.compareTo(b));
         System.out.println(names);
+        trimPunct("把我的标点符号去掉吧，全科。");
     }
 
+    /**
+     * 删除所有的标点符号
+     *
+     * @param str 处理的字符串
+     */
+    public  static String trimPunct(String str) {
+        if(isEmpty(str)){
+            return "";
+        }
+        return str.replaceAll("[\\pP\\p{Punct}]", "");
+    }
 
 }
