@@ -13,9 +13,7 @@ public class curlTest {
        /* String []cmds = {"curl", "-i", "-w", "状态%{http_code}；DNS时间%{time_namelookup}；"
             + "等待时间%{time_pretransfer}TCP 连接%{time_connect}；发出请求%{time_starttransfer}；"
             + "总时间%{time_total}","http://www.baidu.com"};*/
-        String []cmds = {"curl", "-X", "GET", "--header"
-            + "等待时间%{time_pretransfer}TCP 连接%{time_connect}；发出请求%{time_starttransfer}；"
-            + "总时间%{time_total}","http://www.baidu.com"};
+        String []cmds = {"curl", "-X", "GET", "'Accept: ","application/json'","--header","'gamePlatform:","IMONE'","'http://localhost:9009/api/v1/dsf/center/admin/customMade?access_token=ec6856fa-db28-434e-b0ea-f3a4869c182a'"};
         ProcessBuilder pb=new ProcessBuilder(cmds);
         pb.redirectErrorStream(true);
         Process p;
